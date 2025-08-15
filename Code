@@ -1,0 +1,98 @@
+import java.util.*;
+
+class Question {
+    String questionText;
+    String[] options;
+    char correctAnswer;
+
+    Question(String questionText, String[] options, char correctAnswer) {
+        this.questionText=questionText;
+        this.options=options;
+        this.correctAnswer=correctAnswer;
+    }
+}
+
+public class OnlineQuizApp {
+
+    private static List<Question> loadQuestions() {
+        List<Question> quiz=new ArrayList<>();
+        quiz.add(new Question(
+                "Which language is used for Android app development?",
+                new String[]{"A.Java", "B.Python", "C.C++", "D.PHP"},
+                'A'
+        ));
+        quiz.add(new Question(
+                "Which company developed Java?",
+                new String[]{"A.Google", "B.Microsoft", "C.Sun Microsystems", "D.IBM"},
+                'C'
+        ));
+        quiz.add(new Question(
+                "What does JVM stand for?",
+                new String[]{"A.Java Variable Machine", "B.Java Virtual Machine", "C.Java Verified Method", "D.None"},
+                'B'
+        ));
+        quiz.add(new Question(
+                "Which of these is not a Java feature?",
+                new String[]{"A.Object-Oriented", "B.Portable", "C.Use of pointers", "D.Robust"},
+                'C'
+        ));
+        quiz.add(new Question(
+                "Which method is the entry point of Java program?",
+                new String[]{"A.start()", "B.main()", "C.run()", "D.execute()"},
+                'B'
+        ));
+        quiz.add(new Question(
+                "Which keyword is used to inherit a class in Java?",
+                new String[]{"A.extends", "B.implements", "C.inherit", "D.super"},
+                'A'
+        ));
+        quiz.add(new Question(
+                "Which of the following is not a primitive data type in Java?",
+                new String[]{"A.int", "B.float", "C.String", "D.char"},
+                'C'
+        ));
+        quiz.add(new Question(
+                "Which symbol is used to end a statement in Java?",
+                new String[]{"A. .", "B. ;", "C. :", "D. ,"},
+                'B'
+        ));
+        quiz.add(new Question(
+                "Which collection class allows duplicate elements?",
+                new String[]{"A.Set", "B.List", "C.Map", "D.None"},
+                'B'
+        ));
+        quiz.add(new Question(
+                "Which Java keyword is used to create an object?",
+                new String[]{"A.create", "B.new", "C.make", "D.build"},
+                'B'
+        ));
+        return quiz;
+    }
+
+    public static void main(String[] args) {
+        List<Question> quiz=loadQuestions();
+        int score=0;
+
+        System.out.println(" Welcome to the Online Quiz ");
+        try (Scanner sc=new Scanner(System.in)){
+            for (int i=0;i<quiz.size();i++){
+                Question q=quiz.get(i);
+                System.out.println("\nQ"+(i+1)+":"+q.questionText);
+                for(String opt : q.options){
+                    System.out.println(opt);
+                }
+                System.out.print("Enter your answer (A/B/C/D): ");
+                char ans=Character.toUpperCase(sc.next().charAt(0));
+
+                if(ans==q.correctAnswer){
+                    System.out.println("Correct!");
+                    score++;
+                } else{
+                    System.out.println("Wrong! Correct answer: "+q.correctAnswer);
+                }
+            }
+        }
+        System.out.println(" Quiz Completed ");
+        System.out.println("Your Score: "+score+"/"+quiz.size());
+    }
+}
